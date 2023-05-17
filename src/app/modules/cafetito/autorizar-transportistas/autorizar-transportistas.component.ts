@@ -40,7 +40,7 @@ export class AutorizarTransportistasComponent implements OnInit {
   autorizar(item: TransportistaInterface){
     this.transportistaService.autorizarTransportista(item.idLicencia).subscribe(res =>{
       if(res){
-        Swal.fire("Autorización Exitosa",  `Se agrego correctamente al tranpostista`,'success');
+        Swal.fire("AutorizaciÃ³n Exitosa",  `Se agrego correctamente al tranpostista`,'success');
         this.ngOnInit();
       }else{
         this.snack.open('No se pudo agregar al transportista', 'Aceptar',{
