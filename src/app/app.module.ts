@@ -53,7 +53,7 @@ import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/ge
     SidebarComponent,
     PesajeParcialidadComponent,
     PesajeVehiculoComponent,
-    GestionarCuentaComponent
+    GestionarCuentaComponent,
   ],
   imports: [
     BrowserModule,
