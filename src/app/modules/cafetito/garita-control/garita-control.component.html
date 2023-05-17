@@ -1,0 +1,56 @@
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+    <mat-card-title class="main-title" >
+        GARITA DE CONTROL</mat-card-title>
+        <div class="row mt-2" >
+            <div class="col-sm py-3 ps-2 pe-3">
+                <mat-card class="parent">
+                    <div class="table-responsive">
+                        <table mat-table [dataSource]="dataSource2" matSort>
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                                  ID Parcialidad
+                                </th>
+                                <td mat-cell *matCellDef="let item"> {{item.idParcialidad}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="cuenta">
+                                <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                                  Número Cuenta
+                                </th>
+                                <td mat-cell *matCellDef="let item"> {{item.numeroCuenta}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="peso">
+                                <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                                 Peso
+                                </th>
+                                <td mat-cell *matCellDef="let item"> {{item.peso}} </td>
+                              </ng-container>
+                              <ng-container matColumnDef="estado">
+                                <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                                  Estado
+                                </th>
+                                <td mat-cell *matCellDef="let item"> {{item.nombreEstado}} </td>
+                              </ng-container>
+                               <ng-container matColumnDef="acciones">
+                                <th mat-header-cell *matHeaderCellDef class="header-table"></th>
+                                <td mat-cell *matCellDef="let item">
+                                  <div >
+                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Acciones">
+                                      <mat-icon>more_horiz</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                      <button mat-menu-item title="Enviar Parcialidad" (click)="aprobarIngreso(item)" >
+                                        <mat-icon class="iconos">local_shipping</mat-icon>
+                                        <span>Aprobar Ingreso</span>
+                                      </button>               
+                                    </mat-menu>
+                                  </div>
+                                </td>
+                              </ng-container>
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                        </table>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+</div>

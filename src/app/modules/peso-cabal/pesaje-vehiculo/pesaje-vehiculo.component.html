@@ -1,0 +1,73 @@
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+    <mat-card-title class="main-title" >
+        Vehículo A Pesar</mat-card-title>
+      <div class="row mt-2" > 
+        <div class="col-sm py-3 ps-2 pe-3">
+          <mat-card class="parent">
+            <div>
+                <form [formGroup]="generalFormGroup">
+                    <mat-form-field class="col-sm-6 full-width" appearance="outline">
+                        <mat-label>Placa Vehículo</mat-label>
+                        <input matInput placeholder="Ingrese la placa" formControlName="placaBusqueda" type="text">
+                      </mat-form-field>
+                </form>
+            </div>
+            <div class="container text-center">
+                <button mat-raised-button color="primary" (click)="buscar()" [disabled]="generalFormGroup.invalid"> 
+                    Buscar
+                </button>
+            </div>
+            <br>
+            <br>
+            <div *ngIf="view">
+                    <form [formGroup]="vehiculoFormGroup">
+                        <div class="row">
+                          <mat-form-field class="col-sm-6">
+                            <mat-label>
+                              Placa
+                            </mat-label>
+                            <input matInput formControlName="placa">
+                        </mat-form-field>
+                            <mat-form-field class="col-sm-6">
+                                <mat-label>
+                                  Modelo
+                                </mat-label>
+                                <input matInput formControlName="modelo">
+                            </mat-form-field>
+                            <mat-form-field class="col-sm-6">
+                                <mat-label>
+                                  Tipo Vehículo
+                                </mat-label>
+                                <input matInput formControlName="tipo">
+                            </mat-form-field>
+                            <mat-form-field class="col-sm-6">
+                                <mat-label>
+                                  Color
+                                </mat-label>
+                                <input matInput formControlName="color">
+                            </mat-form-field>
+                        </div>
+                    </form>
+            </div>
+            <div  *ngIf="view">
+                <div >
+                    <form [formGroup]="generalFormGroup2">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Peso del Vehículo</mat-label>
+                            <input matInput placeholder="Ingrese su usuario" formControlName="peso" type="number">
+                        </mat-form-field>
+                    </form>
+                </div>
+                <div class="container text-center">
+                    <button mat-raised-button color="primary" (click)="cancelar()"> 
+                        Cancelar
+                    </button>
+                    <button mat-raised-button color="primary" (click)="guardar()" [disabled]="generalFormGroup2.invalid"> 
+                        Guardar
+                    </button>
+                </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+</div>

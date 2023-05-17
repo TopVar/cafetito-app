@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader>
+            Menu
+        </div>
+        <button mat-list-item>
+            <mat-icon mat-list-icon>home</mat-icon>
+            Inicio
+        </button>
+        <button mat-list-item >
+            <mat-icon mat-list-icon>account_circle</mat-icon>
+            Perfil
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/cuentas']" *ngIf="roles.includes('CAFETITO_CREAR_CUENTA')">
+            <mat-icon mat-list-icon>check_circle</mat-icon>
+            Aprobar Cuentas
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/autoriza/vehiculo']" *ngIf="roles.includes('CAFETITO_ADMIN')">
+            <mat-icon mat-list-icon>local_shipping</mat-icon>
+            Autorizar Vehiculo
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/autoriza/transportista']" *ngIf="roles.includes('CAFETITO_ADMIN')">
+            <mat-icon mat-list-icon>airline_seat_recline_normal</mat-icon>
+            Autorizar Trasportistas
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/pesaje/parcialidad']" *ngIf="roles.includes('CAFETITO_PESO_CABAL')">
+            <mat-icon mat-list-icon>scale </mat-icon>
+            Pesar Parcialidad
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/pesaje/vehiculo']" *ngIf="roles.includes('CAFETITO_PESO_CABAL')">
+            <mat-icon mat-list-icon>front_loader</mat-icon>
+            Pesar Vehiculo
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/gestionar/cuentas']" *ngIf="roles.includes('CAFETITO_CREAR_CUENTA')">
+            <mat-icon mat-list-icon>list_alt</mat-icon>
+            Gestionar Cuentas
+        </button>
+        <button mat-list-item [routerLink]="['/cafetito/ingreso']" *ngIf="roles.includes('CAFETITO_AUTORIZAR_INGRESO')">
+            <mat-icon mat-list-icon>trending_flat</mat-icon>
+            Validar Ingreso
+        </button>
+    </mat-action-list>
+</mat-card>
