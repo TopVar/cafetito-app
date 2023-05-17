@@ -65,5 +65,10 @@ export class TransportistaService {
       return this.http.get<TransportistaInterface[]>(environment.BASE_WS_LOCAL + `/cafetito/transportistas/creados`,{ headers});
     }
 
+    //genera QR code para Transportista autorizado
+    generateQRCode(data: string, size: string = '200x200') {
+      const url = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(data)}&size=${encodeURIComponent(size)}`;
+      return this.http.get(url, { responseType: 'blob' });
+    }
 
 }

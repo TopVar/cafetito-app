@@ -11,6 +11,7 @@ import { GaritaControlComponent } from './modules/cafetito/garita-control/garita
 import { PesajeVehiculoComponent } from './modules/peso-cabal/pesaje-vehiculo/pesaje-vehiculo.component';
 import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/gestionar-cuenta.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { QrTransportistaComponent } from './modules/cafetito/qr-transportista/qr-transportista.component';
 
 const routes: Routes = [
   { 
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path: 'pesaje/vehiculo',
         component: PesajeVehiculoComponent
+      },
+      {
+        path: 'qr/transportista/:id',
+        component: QrTransportistaComponent
       },
 
       
