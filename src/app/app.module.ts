@@ -36,6 +36,7 @@ import { SidebarComponent } from './modules/componentes-comunes/sidebar/sidebar.
 import { PesajeParcialidadComponent } from './modules/peso-cabal/pesaje-parcialidad/pesaje-parcialidad.component';
 import { PesajeVehiculoComponent } from './modules/peso-cabal/pesaje-vehiculo/pesaje-vehiculo.component';
 import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/gestionar-cuenta.component';
+import { VerificarTransportistaComponent } from './modules/cafetito/garita-control/verificar-transportista/verificar-transportista.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/ge
     SidebarComponent,
     PesajeParcialidadComponent,
     PesajeVehiculoComponent,
-    GestionarCuentaComponent
+    GestionarCuentaComponent,
+    VerificarTransportistaComponent
   ],
   imports: [
     BrowserModule,

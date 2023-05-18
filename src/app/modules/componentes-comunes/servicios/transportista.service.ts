@@ -66,4 +66,10 @@ export class TransportistaService {
     }
 
 
+    transportistaValidarPermisoIngreso(licencia: string, idParcialidad: number): Observable<TransportistaDto> {      
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+      return this.http.get<TransportistaDto>(environment.BASE_WS_LOCAL + `/cafetito/transportistas/validar/permiso/${licencia}/${idParcialidad}`,{ headers});
+    }
+
+
 }

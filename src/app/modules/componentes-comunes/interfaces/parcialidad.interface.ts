@@ -21,3 +21,16 @@ export interface EnvioParcialidadInterface {
     mensaje?: string;
     licenciasTransportistas: string;
 }
+
+export interface ParcialidadModel {
+  idParcialidad: number;
+  numeroCuenta: string;
+  estadoParcialidad: number;
+  pesoParcialidad: number;
+  fechaParcialidadEnviada?: Date;
+  fechaParcialidadEntregada: Date;
+  licenciasTransportistas: string;
+  placaVehiculo: string;
+  usuarioCreacion: string;
+  fechaCreacion: Date;
+}

@@ -11,6 +11,7 @@ import { GaritaControlComponent } from './modules/cafetito/garita-control/garita
 import { PesajeVehiculoComponent } from './modules/peso-cabal/pesaje-vehiculo/pesaje-vehiculo.component';
 import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/gestionar-cuenta.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { VerificarTransportistaComponent } from './modules/cafetito/garita-control/verificar-transportista/verificar-transportista.component';
 
 const routes: Routes = [
   { 
@@ -65,7 +66,12 @@ const routes: Routes = [
       
 
     ]
-  }
+  },
+  { 
+    path: 'transportista/validacion/:licencia/:idParcialidad', 
+    component: VerificarTransportistaComponent,
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

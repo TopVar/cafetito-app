@@ -1,0 +1,50 @@
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+    <mat-card-title class="main-title" >
+      {{autorizado ? "Transportista Autorizado" : "Transportista No Autorizado"}}</mat-card-title>
+    <div class="row mt-2" > 
+      <div class="col-sm py-3 ps-2 pe-3">
+        <mat-card class="parent">
+            <div *ngIf="autorizado">
+                <div>
+                    <form [formGroup]="generalFormGroup">
+                        <div class="row">
+                            <mat-form-field class="col-sm-6">
+                                <mat-label>
+                                  Licencia del Transportista
+                                </mat-label>
+                                <input matInput formControlName="licencia">
+                            </mat-form-field>
+                            <mat-form-field class="col-sm-6">
+                                <mat-label>
+                                  Tipo de Licencia
+                                </mat-label>
+                                <input matInput formControlName="tipo">
+                            </mat-form-field>
+                            <mat-form-field class="col-sm-6">
+                              <mat-label>
+                                Nombre Completo
+                              </mat-label>
+                              <input matInput formControlName="nombre">
+                          </mat-form-field>
+                          <mat-form-field class="col-sm-6">
+                            <mat-label>
+                              Teléfono
+                            </mat-label>
+                            <input matInput formControlName="tel">
+                        </mat-form-field>
+                        <mat-form-field class="col-sm-6">
+                            <mat-label>
+                              Correo Electronico
+                            </mat-label>
+                            <input matInput formControlName="correo">
+                        </mat-form-field>
+                        </div>
+                    </form>
+                </div>            
+                
+            </div>
+          
+        </mat-card>
+      </div>    
+    </div>
+  </div>

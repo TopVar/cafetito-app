@@ -14,8 +14,8 @@ export class PesajeVehiculoComponent implements OnInit {
 
   generalFormGroup!: FormGroup;
   vehiculoFormGroup!: FormGroup;
-  generalFormGroup2!: FormGroup;
   view!: Boolean;
+  pesoFormGroup!: FormGroup
 
   constructor(private vehiculoService: VehiculoService,
     private snack: MatSnackBar) {
@@ -23,7 +23,7 @@ export class PesajeVehiculoComponent implements OnInit {
       placaBusqueda: new FormControl('', Validators.required),
     })
 
-    this.generalFormGroup = new FormGroup({
+    this.pesoFormGroup = new FormGroup({
       peso: new FormControl('', Validators.required),
     })
 
@@ -45,6 +45,8 @@ export class PesajeVehiculoComponent implements OnInit {
 
   buscar(){
     const placa: string = this.generalFormGroup.get('placa')?.value
+    console.log(placa);
+    
 
     this.vehiculoService.findvehculoByPlaca(placa).subscribe(res =>{
       if(res){
@@ -60,7 +62,7 @@ export class PesajeVehiculoComponent implements OnInit {
           marca: res.marcaVehiculo
         })
       }else{
-        this.snack.open('No se encontro el vehículo', 'Aceptar',{
+        this.snack.open('No se encontro el vehÃ­culo', 'Aceptar',{
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right'
@@ -71,7 +73,7 @@ export class PesajeVehiculoComponent implements OnInit {
   }
 
   cancelar(){
-    this.generalFormGroup2.reset();
+    this.pesoFormGroup.reset();
     this.generalFormGroup.reset();
     this.vehiculoFormGroup.reset();
     this.view = false;
@@ -80,7 +82,7 @@ export class PesajeVehiculoComponent implements OnInit {
   guardar(){
 
     const vehiculo: VehiculoInterface = {
-      pesoVehiculo: this.generalFormGroup2.get('peso')?.value,
+      pesoVehiculo: this.pesoFormGroup.get('peso')?.value,
       colorVehiculo: this.vehiculoFormGroup.get('color')?.value,
       marcaVehiculo: this.vehiculoFormGroup.get('marca')?.value,
       placaVehiculo: this.vehiculoFormGroup.get('placa')?.value,
@@ -98,7 +100,7 @@ export class PesajeVehiculoComponent implements OnInit {
         Swal.fire("Pesaje Correcto",  `Se peso el vehiculo y guardo cambio exitosamente`,'success');
         this.ngOnInit()
       }else{
-        this.snack.open('No se pudo guardar el peso del vehículo', 'Aceptar',{
+        this.snack.open('No se pudo guardar el peso del vehï¿½culo', 'Aceptar',{
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right'

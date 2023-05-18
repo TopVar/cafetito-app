@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
 import { Observable, map} from 'rxjs';
 import { AutenticationInterface } from '../interfaces/usuario.interface';
-import { ParcialidadInterface } from '../interfaces/parcialidad.interface';
+import { ParcialidadInterface, ParcialidadModel } from '../interfaces/parcialidad.interface';
 import { MensajeInterface, RespuestaInterface } from '../interfaces/mensaje.interface';
 
 @Injectable({
@@ -50,5 +50,11 @@ export class ParcialidadService {
     autorizarIngreso(idParcialidad: number): Observable<RespuestaInterface> {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);    
       return this.http.post<RespuestaInterface>(environment.BASE_WS_LOCAL + `/cafetito/parcialidades/autorizarIngreso/${idParcialidad}`, null ,{ headers});
+    }
+
+    getParcialidadesCuenta(noCuenta: string): Observable<ParcialidadInterface[]> {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+
+      return this.http.get<ParcialidadInterface[]>(environment.BASE_WS_LOCAL + `/cafetito/parcialidades/gestionar/${noCuenta}`, { headers });
     }
 }

@@ -121,10 +121,10 @@ console.log("PARAMETROS", param);
     this.cuentaService.crearCuenta(param).subscribe(res =>{
       console.log(res);
       if(res.aprobado != 0){
-        Swal.fire("Creaci�n exitosa",  `Se creo el numero de cuenta ${res.numeroCuenta}. ${res.mensaje}`,'success');
+        Swal.fire("Creación exitosa",  `Se creo el numero de cuenta ${res.numeroCuenta}. ${res.mensaje}`,'success');
         this.ngOnInit()
       }else if(res.correcion != 0){
-        Swal.fire("Correci�n de cuenta",  'Se mando a corregir la cuenta','success');
+        Swal.fire("Correción de cuenta",  'Se mando a corregir la cuenta','success');
         this.ngOnInit()
       }else if(res.rechazado != 0){
         Swal.fire("Cuenta Rechazada", 'Se rechazo exitosamente la cuenta','success');

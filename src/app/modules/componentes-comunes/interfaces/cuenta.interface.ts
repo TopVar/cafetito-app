@@ -55,11 +55,11 @@ import { VehiculoInterface } from "./vehiculo.interface";
     }
 
     export interface BandejaCuentas {
-        idCuentaCorriente: number;
+        idCuentaCorriente?: number;
         numeroCuenta: string;
         peso: number;
         cantidad: number;
-        agricultor: string;
+        agricultor?: string;
         estadoNombre: string;
         estado: number;
     }

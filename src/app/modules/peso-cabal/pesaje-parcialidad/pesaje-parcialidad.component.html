@@ -13,7 +13,7 @@
                     <input matInput (keyup)="applyFilter($event)">
                   </mat-form-field>
                   <div class="result-count">
-                    <span class="title">Resultados de b�squeda </span>
+                    <span class="title">Resultados de búsqueda </span>
                     <span class="count">{{dataSource.data.length}}</span>
                   </div>
                   <div class="table-responsive">
@@ -26,7 +26,7 @@
                           </ng-container>
                           <ng-container matColumnDef="cuenta">
                             <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
-                              N�mero Cuenta
+                              N�mero Cuenta
                             </th>
                             <td mat-cell *matCellDef="let item"> {{item.numeroCuenta}} </td>
                           </ng-container>
@@ -73,19 +73,108 @@
                   </div>
             </div>
             <div *ngIf="!inicio">
-                    <div >
-                        <form [formGroup]="generalFormGroup">
-                            <mat-form-field class="full-width" appearance="outline">
-                                <mat-label>Peso de la Parcialidad</mat-label>
-                                <input matInput placeholder="Ingrese su usuario" formControlName="peso" type="number">
-                            </mat-form-field>
-                        </form>
-                    </div>
-                    <div class="container text-center">
-                        <button mat-raised-button color="primary" (click)="guardar()" [disabled]="generalFormGroup.invalid"> 
-                            Guardar
-                        </button>
-                    </div>            
+              <div *ngIf="!formulario">
+                <div >
+                  <form [formGroup]="generalFormGroup">
+                      <mat-form-field class="full-width" appearance="outline">
+                          <mat-label>Peso de la Parcialidad</mat-label>
+                          <input matInput placeholder="Ingrese su usuario" formControlName="peso" type="number">
+                      </mat-form-field>
+                  </form>
+                </div>
+                <div class="container text-center">
+                    <button mat-raised-button color="primary" (click)="guardar()" [disabled]="generalFormGroup.invalid"> 
+                        Guardar
+                    </button>
+                </div>
+              </div>
+
+              <div *ngIf="formulario">
+                <span class="title">Boleta Pesaje </span>
+                <div>
+                  <form [formGroup]="boletaFormGroup">
+                      <div class="row">
+                        <mat-form-field class="col-sm-6">
+                          <mat-label>
+                            Número Boleta
+                          </mat-label>
+                          <input matInput formControlName="idBoleta">
+                        </mat-form-field>
+                          <!-- <mat-form-field class="col-sm-6">
+                              <mat-label>
+                                
+                              </mat-label>
+                              <input matInput formControlName="">
+                          </mat-form-field> -->
+                          <mat-form-field class="col-sm-6">
+                              <mat-label>
+                                ID parcialidad
+                              </mat-label>
+                              <input matInput formControlName="idParcialidad">
+                          </mat-form-field>
+                          <mat-form-field class="col-sm-6">
+                            <mat-label>
+                              Estado Parcialidad
+                            </mat-label>
+                            <input matInput formControlName="estadoP">
+                        </mat-form-field>
+                        <mat-form-field class="col-sm-6">
+                            <mat-label>
+                              Número Cuenta
+                            </mat-label>
+                            <input matInput formControlName="noCuenta">
+                        </mat-form-field>
+                        <mat-form-field class="col-sm-6">
+                          <mat-label>
+                            Estado Cuenta
+                          </mat-label>
+                          <input matInput formControlName="estadoC">
+                      </mat-form-field>
+                      <mat-form-field class="col-sm-6">
+                          <mat-label>
+                            Resultado Pesaje
+                          </mat-label>
+                          <input matInput formControlName="pesaje">
+                      </mat-form-field>
+                      <mat-form-field class="col-sm-6">
+                        <mat-label>
+                          Licencias Transportistas
+                        </mat-label>
+                        <input matInput formControlName="licencias">
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-6">
+                        <mat-label>
+                          Placa Vehículo
+                        </mat-label>
+                        <input matInput formControlName="placa">
+                    </mat-form-field>
+                    <mat-form-field class="col-sm-6">
+                      <mat-label>
+                        Tipo Vehiculo
+                      </mat-label>
+                      <input matInput formControlName="tipo">
+                  </mat-form-field>
+                  <mat-form-field class="col-sm-6">
+                      <mat-label>
+                        Fecha Pesaje
+                      </mat-label>
+                      <input matInput formControlName="fecha">
+                  </mat-form-field>
+                  <mat-form-field class="col-sm-6">
+                    <mat-label>
+                      Usuario Pesaje
+                    </mat-label>
+                    <input matInput formControlName="usuario">
+                </mat-form-field>
+                      </div>
+                  </form>
+              </div>
+              <div class="container text-center">
+                <button mat-raised-button color="primary" (click)="imprimirBoleta()"> 
+                    Imprimir
+                </button>
+            </div>
+              </div>                               
                 
             </div>
           
