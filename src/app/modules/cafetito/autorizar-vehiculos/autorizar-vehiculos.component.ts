@@ -29,7 +29,9 @@ export class AutorizarVehiculosComponent implements OnInit {
       if(res.length != 0){
         this.dataSource.data = res;
       }else{
-        Swal.fire("Sin Vehículos",  `Lo sentimos, pero no se encontraron vehículos nuevos.`,'warning');
+        Swal.fire("Sin VehÃ­culos",  `Lo sentimos, pero no se encontraron vehÃ­culos nuevos.`,'warning').then(()=>{
+          this.dataSource.data = []
+        });
       }
     })
     
@@ -42,13 +44,13 @@ export class AutorizarVehiculosComponent implements OnInit {
   autorizar(item: VehiculoInterface){
     this.vehiculoService.autorizarVehiculo(item.placaVehiculo).subscribe(res =>{
       if(res){
-        Swal.fire("Autorización Exitosa",  `Se agrego correctamente el vehículo`,'success').then(()=>{
+        Swal.fire(res.titulo, res.contenido,'success').then(()=>{
           this.ngOnInit();
         }         
         );
         
       }else{
-        this.snack.open('No se pudo agregar el vehículo', 'Aceptar',{
+        this.snack.open('No se pudo agregar el vehÃ­culo', 'Aceptar',{
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right'
@@ -61,10 +63,12 @@ export class AutorizarVehiculosComponent implements OnInit {
   rechazar(item: VehiculoInterface){
     this.vehiculoService.rechazarVehiculo(item.placaVehiculo).subscribe(res =>{
       if(res){
-        Swal.fire("Rechazo Exitoso",  `No se agrego el vehículo`,'success');
-        this.ngOnInit();
+        Swal.fire(res.titulo,  res.contenido,'success').then(()=>{
+          this.ngOnInit();
+        });
+        
       }else{
-        this.snack.open('No se pudo agregar el vehículo', 'Aceptar',{
+        this.snack.open('No se pudo agregar el vehÃ­culo', 'Aceptar',{
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right'

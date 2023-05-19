@@ -50,6 +50,7 @@ export class GestionarCuentaComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.inicio = true;
     this.cuentaService.getCuentasPorGestionar().subscribe(res =>{
       this.dataSource.data = res
     })

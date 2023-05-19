@@ -28,7 +28,9 @@ export class AutorizarTransportistasComponent implements OnInit {
       if(res.length != 0){
         this.dataSource.data = res;
       }else{
-        Swal.fire("Sin Transportistas",  `Lo sentimos, pero no se encontraron transportistas nuevos.`,'warning');
+        Swal.fire("Sin Transportistas",  `Lo sentimos, pero no se encontraron transportistas nuevos.`,'warning').then(()=>{
+          this.dataSource.data = []
+        })
       }
     })
   }
@@ -40,8 +42,10 @@ export class AutorizarTransportistasComponent implements OnInit {
   autorizar(item: TransportistaInterface){
     this.transportistaService.autorizarTransportista(item.idLicencia).subscribe(res =>{
       if(res){
-        Swal.fire("Autorización Exitosa",  `Se agrego correctamente al tranpostista`,'success');
-        this.ngOnInit();
+        Swal.fire(res.titulo,  res.contenido,'success').then(()=>{
+          this.ngOnInit();
+        })
+        
       }else{
         this.snack.open('No se pudo agregar al transportista', 'Aceptar',{
           duration: 3000,
@@ -56,8 +60,10 @@ export class AutorizarTransportistasComponent implements OnInit {
   rechazar(item: TransportistaInterface){
     this.transportistaService.rechazarTransportista(item.idLicencia).subscribe(res =>{
       if(res){
-        Swal.fire("Rechazo Exitoso",  `No se agrego al tranpostista`,'success');
-        this.ngOnInit();
+        Swal.fire(res.titulo,  res.contenido,'success').then(()=>{
+          this.ngOnInit();
+        })
+        
       }else{
         this.snack.open('No se pudo agregar al transportista', 'Aceptar',{
           duration: 3000,

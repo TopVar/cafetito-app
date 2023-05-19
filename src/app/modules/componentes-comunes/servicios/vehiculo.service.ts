@@ -40,7 +40,7 @@ export class VehiculoService {
       //const token = localStorage.getItem('token');
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 
-      return this.http.post(environment.BASE_WS_LOCAL + '/agricultor/vehiculos/editar', param, { headers});
+      return this.http.put(environment.BASE_WS_LOCAL + '/agricultor/vehiculos/editar', param, { headers});
     }
 
     vehculosAutorizadosBeneficio(): Observable<any> {
@@ -77,5 +77,11 @@ export class VehiculoService {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
 
       return this.http.get<VehiculoInterface[]>(environment.BASE_WS_LOCAL + `/cafetito/vehiculos/creados`, { headers});
+    }
+
+    vehculoPesaje(placa: string, peso:number): Observable<RespuestaInterface> {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+
+      return this.http.post<RespuestaInterface>(environment.BASE_WS_LOCAL + `/cafetito/vehiculos/pesaje/${placa}/${peso}`, null, { headers});
     }
 }

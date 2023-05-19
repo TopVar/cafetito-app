@@ -37,12 +37,19 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('authData', serializedResponse);
       const roles: string[] = response.roles.split(',');
 
+      const redireccion = sessionStorage.getItem("redireccion");
+      console.log(redireccion);
+      
+      if(redireccion){
+
+        console.log("ENTRA POR ACA");
+        
+        window.location.href = redireccion;
+
+      }
       if(response != null){
-        if(roles.find(rol => rol === 'AGRICULTOR_VENTAS' || rol === 'AGRICULTOR_ENVIOS' || rol === 'AGRICULTOR_ADMIN')){
-          this.router.navigate(['agricultor']);
-        }else{
+
           this.router.navigate(['cafetito']);
-        }
       }else{
         this.snack.open('Acceso Denegado', 'Aceptar',{
           duration: 3000,

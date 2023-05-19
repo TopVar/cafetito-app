@@ -28,12 +28,12 @@ export class VerificarTransportistaComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       const licencia: string = params.get('licencia')!;
-      const idParcialidad = parseInt(params.get('idParcialidad')!);
+      //const idParcialidad = parseInt(params.get('idParcialidad')!);
 
       console.log('Licencia:', licencia);
-      console.log('ID Parcialidad:', idParcialidad);
+      //console.log('ID Parcialidad:', idParcialidad);
 
-      this.transportistaService.transportistaValidarPermisoIngreso(licencia, idParcialidad).subscribe(res =>{
+      this.transportistaService.transportistaValidarPermisoIngreso(licencia).subscribe(res =>{
         if(res){
           this.autorizado = true;
           this.generalFormGroup.patchValue({

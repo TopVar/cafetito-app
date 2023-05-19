@@ -60,7 +60,9 @@ export class PesajeParcialidadComponent implements OnInit {
       if(res.length != 0){
         this.dataSource.data = res
       }else{
-        Swal.fire("Cuentas no encontradas",  `Lo sentimos, pero no se encontraron parcialidades para pesar.`,'warning');
+        Swal.fire("Cuentas no encontradas",  `Lo sentimos, pero no se encontraron parcialidades para pesar.`,'warning').then(()=>{
+          this.dataSource.data = []
+        })
       }
     })
   }
@@ -86,8 +88,9 @@ export class PesajeParcialidadComponent implements OnInit {
     this.cuentaService.pesajeParcialidad(this.idParcialidad, peso).subscribe(res=>{
       console.log(res);
       if(res){
-        Swal.fire("Pesaje Exitoso",  res.mensaje,'success');
-        this.formulario = true;
+        Swal.fire("Pesaje Exitoso",  res.mensaje,'success').then(()=>{
+          
+          this.formulario = true;
 
         this.boletaService.dataBoleta(this.idParcialidad).subscribe(data =>{
 
@@ -107,6 +110,7 @@ export class PesajeParcialidadComponent implements OnInit {
 
         })
 
+        })
 
       }else{
         this.snack.open('No se pudo agregar al transportista', 'Aceptar',{

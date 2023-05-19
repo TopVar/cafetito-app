@@ -12,6 +12,7 @@ import { PesajeVehiculoComponent } from './modules/peso-cabal/pesaje-vehiculo/pe
 import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/gestionar-cuenta.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { VerificarTransportistaComponent } from './modules/cafetito/garita-control/verificar-transportista/verificar-transportista.component';
+import { NormalGuard } from './modules/componentes-comunes/servicios/normal.guard';
 
 const routes: Routes = [
   { 
@@ -32,6 +33,7 @@ const routes: Routes = [
   { 
     path: 'cafetito', 
     component: DashboardComponent,
+    canActivate: [NormalGuard],
     pathMatch: 'prefix',
     children: [
       {
@@ -46,10 +48,10 @@ const routes: Routes = [
         path: 'autoriza/transportista',
         component: AutorizarTransportistasComponent
       },
-      {
+      /* {
         path: 'pesaje/parcialidad',
         component: PesajeParcialidadComponent
-      },
+      }, */
       {
         path: 'ingreso',
         component: GaritaControlComponent
@@ -58,20 +60,39 @@ const routes: Routes = [
         path: 'gestionar/cuentas',
         component: GestionarCuentaComponent
       },
-      {
+      /* {
         path: 'pesaje/vehiculo',
         component: PesajeVehiculoComponent
-      },
+      }, */
 
       
 
     ]
   },
   { 
-    path: 'transportista/validacion/:licencia/:idParcialidad', 
+    path: 'transportista/validacion/:licencia', 
     component: VerificarTransportistaComponent,
+    canActivate: [NormalGuard],
     pathMatch: 'full'
   },
+  { 
+    path: 'pesocabal', 
+    component: DashboardComponent,
+    pathMatch: 'prefix',
+    canActivate: [NormalGuard],
+    children: [
+      {
+        path: 'pesaje/parcialidad',
+        component: PesajeParcialidadComponent
+      },
+      {
+        path: 'pesaje/vehiculo',
+        component: PesajeVehiculoComponent
+      }   
+
+    ]
+  },
+
 ];
 
 @NgModule({

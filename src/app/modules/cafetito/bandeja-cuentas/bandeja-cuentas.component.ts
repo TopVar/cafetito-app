@@ -121,14 +121,18 @@ console.log("PARAMETROS", param);
     this.cuentaService.crearCuenta(param).subscribe(res =>{
       console.log(res);
       if(res.aprobado != 0){
-        Swal.fire("Creación exitosa",  `Se creo el numero de cuenta ${res.numeroCuenta}. ${res.mensaje}`,'success');
-        this.ngOnInit()
+        Swal.fire("Creación exitosa",  `Se creo el numero de cuenta ${res.numeroCuenta}. ${res.mensaje}`,'success').then(()=>{
+          this.ngOnInit()
+        })
+        
       }else if(res.correcion != 0){
-        Swal.fire("Correción de cuenta",  'Se mando a corregir la cuenta','success');
-        this.ngOnInit()
+        Swal.fire("Correción de cuenta",  'Se mando a corregir la cuenta','success').then(()=>{
+          this.ngOnInit()
+        })
       }else if(res.rechazado != 0){
-        Swal.fire("Cuenta Rechazada", 'Se rechazo exitosamente la cuenta','success');
-        this.ngOnInit()
+        Swal.fire("Cuenta Rechazada", 'Se rechazo exitosamente la cuenta','success').then(()=>{
+          this.ngOnInit()
+        })
       } else{
         this.snack.open('No se pudo agregar al transportista', 'Aceptar',{
           duration: 3000,

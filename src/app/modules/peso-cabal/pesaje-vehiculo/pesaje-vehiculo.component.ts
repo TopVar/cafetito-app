@@ -41,10 +41,13 @@ export class PesajeVehiculoComponent implements OnInit {
 
   ngOnInit(): void {
     this.view = false;
+    this.pesoFormGroup.reset();
+    this.generalFormGroup.reset();
+    this.vehiculoFormGroup.reset();
   }
 
   buscar(){
-    const placa: string = this.generalFormGroup.get('placa')?.value
+    const placa: string = this.generalFormGroup.get('placaBusqueda')?.value
     console.log(placa);
     
 
@@ -81,7 +84,7 @@ export class PesajeVehiculoComponent implements OnInit {
 
   guardar(){
 
-    const vehiculo: VehiculoInterface = {
+    /* const vehiculo: VehiculoInterface = {
       pesoVehiculo: this.pesoFormGroup.get('peso')?.value,
       colorVehiculo: this.vehiculoFormGroup.get('color')?.value,
       marcaVehiculo: this.vehiculoFormGroup.get('marca')?.value,
@@ -91,16 +94,20 @@ export class PesajeVehiculoComponent implements OnInit {
       tipoVehiculo: this.vehiculoFormGroup.get('tipo')?.value,
       usuarioCreacion: this.vehiculoFormGroup.get('usuario')?.value,
       fechaCreacion: this.vehiculoFormGroup.get('fecha')?.value
-    }
+    } */
+    const placa: string = this.generalFormGroup.get('placaBusqueda')?.value
+    const peso: number = this.pesoFormGroup.get('peso')?.value
 
-    this.vehiculoService.editar(vehiculo).subscribe(res =>{
+    this.vehiculoService.vehculoPesaje(placa, peso).subscribe(res =>{
       console.log(res);
 
       if(res){
-        Swal.fire("Pesaje Correcto",  `Se peso el vehiculo y guardo cambio exitosamente`,'success');
-        this.ngOnInit()
+        Swal.fire(res.titulo,  res.contenido,'success').then(() =>{
+          this.ngOnInit()
+        });
+        
       }else{
-        this.snack.open('No se pudo guardar el peso del veh�culo', 'Aceptar',{
+        this.snack.open('No se pudo guardar el peso del vehículo', 'Aceptar',{
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right'
