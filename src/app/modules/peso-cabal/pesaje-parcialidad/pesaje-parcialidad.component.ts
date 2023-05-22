@@ -125,6 +125,82 @@ export class PesajeParcialidadComponent implements OnInit {
   }
 
   imprimirBoleta(){
-
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      const document = printWindow.document;
+      document.write(`
+        <html>
+          <head>
+            <title>Boleta Pesaje</title>
+            <style>
+              body {
+                margin: 0;
+                font-family: Roboto, "Helvetica Neue", sans-serif;
+                background: #f5f5f5;
+                text-align: center;
+              }
+  
+              .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+              }
+  
+              .form {
+                max-width: 600px;
+                padding: 20px;
+                background: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                margin-top: 20px;
+                text-align: left;
+              }
+  
+              .form label {
+                font-weight: bold;
+                display: inline-block;
+                width: 200px;
+              }
+  
+              .form p {
+                margin-top: 10px;
+              }
+  
+              .logo {
+                margin-bottom: 20px;
+              }
+  
+              .logo img {
+                max-width: 100%;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+            <!--  
+            <div class="logo">
+              <img src="../../../../assets/login.png" alt="Logo">
+              </div>  -->
+              <div class="form">
+                <p><label>Número de Boleta:</label> ${this.boletaFormGroup.get('idBoleta')?.value}</p>
+                <p><label>ID Parcialidad:</label> ${this.boletaFormGroup.get('idParcialidad')?.value}</p>
+                <p><label>Estado Parcialidad:</label> ${this.boletaFormGroup.get('estadoP')?.value}</p>
+                <p><label>Número Cuenta:</label> ${this.boletaFormGroup.get('noCuenta')?.value}</p>
+                <p><label>Estado Cuenta:</label> ${this.boletaFormGroup.get('estadoC')?.value}</p>
+                <p><label>Resultado Pesaje:</label> ${this.boletaFormGroup.get('pesaje')?.value}</p>
+                <p><label>Licencias Transportistas:</label> ${this.boletaFormGroup.get('licencias')?.value}</p>
+                <p><label>Placa Vehículo:</label> ${this.boletaFormGroup.get('placa')?.value}</p>
+                <p><label>Tipo Vehículo:</label> ${this.boletaFormGroup.get('tipo')?.value}</p>
+                <p><label>Usuario Pesaje:</label> ${this.boletaFormGroup.get('usuario')?.value}</p>
+              </div>
+            </div>
+          </body>
+        </html>
+      `);
+      document.close();
+      printWindow.print();
+    }
   }
 }

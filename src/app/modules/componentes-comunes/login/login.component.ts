@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
         console.log("ENTRA POR ACA");
         
-        window.location.href = redireccion;
+        window.location.href = '/#' + redireccion;
 
       }
       if(response != null){

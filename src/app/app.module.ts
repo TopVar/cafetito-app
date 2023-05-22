@@ -21,6 +21,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { ErrorInterceptor } from './modules/componentes-comunes/utils/error.interceptor';
 import { AutorizarTransportistasComponent } from './modules/cafetito/autorizar-transportistas/autorizar-transportistas.component';
@@ -38,6 +39,7 @@ import { PesajeVehiculoComponent } from './modules/peso-cabal/pesaje-vehiculo/pe
 import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/gestionar-cuenta.component';
 import { VerificarTransportistaComponent } from './modules/cafetito/garita-control/verificar-transportista/verificar-transportista.component';
 
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { VerificarTransportistaComponent } from './modules/cafetito/garita-contr
    MatSelectModule,
    MatOptionModule,
    MatRadioModule,
+   MatGridListModule,
    NgxSpinnerModule
   ],
   providers: [
@@ -87,6 +90,10 @@ import { VerificarTransportistaComponent } from './modules/cafetito/garita-contr
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true
+    },
+    {
+      provide:LocationStrategy, 
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent],

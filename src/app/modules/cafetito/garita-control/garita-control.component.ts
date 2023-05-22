@@ -5,6 +5,8 @@ import { ParcialidadInterface } from '../../componentes-comunes/interfaces/parci
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ParcialidadService } from '../../componentes-comunes/servicios/parcialidad.service';
+import { VehiculoService } from '../../componentes-comunes/servicios/vehiculo.service';
+import { VehiculoInterface } from '../../componentes-comunes/interfaces/vehiculo.interface';
 
 @Component({
   selector: 'app-garita-control',
@@ -17,11 +19,16 @@ export class GaritaControlComponent implements OnInit {
     this.dataSource2.paginator = mp2;
   }
 
-  displayedColumns2: string[] = ['id', 'cuenta', 'peso', 'estado', 'acciones'];
+  displayedColumns2: string[] = ['id', 'cuenta', 'peso', 'estado', 'placa', 'acciones'];
   dataSource2 = new MatTableDataSource<ParcialidadInterface>();
+  vehiculo!: VehiculoInterface; 
+  parcialidad!: ParcialidadInterface; 
+  tablaHabilitada: boolean = true; 
+  habilitarDetalles: boolean = false; 
 
   constructor(private parcialidadService: ParcialidadService,
-    private snack: MatSnackBar) { }
+    private snack: MatSnackBar,
+    private vehiculoService: VehiculoService) { }
 
   ngOnInit(): void {
     this.parcialidadService.getParcialidadesEnRuta().subscribe(res =>{
@@ -30,13 +37,31 @@ export class GaritaControlComponent implements OnInit {
     
   }
 
-  aprobarIngreso(item: ParcialidadInterface){
-    this.parcialidadService.autorizarIngreso(item.idParcialidad).subscribe(res =>{
-      if(res){
-        Swal.fire("Ingreso exitoso", 'Se ingresa correctamente','success');
+  
+  
+  validarVehiculo(item: ParcialidadInterface) {
+    this.tablaHabilitada = false; 
+    this.habilitarDetalles = true; 
+    this.parcialidad = item; 
+    this.vehiculoService.findvehculoByPlaca(item.placa!).subscribe(res => {
+      this.vehiculo = res; 
+    })
+  }
+
+  regresar(){
+    this.tablaHabilitada = true; 
+    this.habilitarDetalles = false; 
+  }
+
+  aprobarIngreso() {
+    this.parcialidadService.autorizarIngreso(this.parcialidad.idParcialidad).subscribe(res => {
+      if (res) {
+        Swal.fire("Ingreso exitoso", 'Se ingresa correctamente', 'success');
+        this.tablaHabilitada = true; 
+        this.habilitarDetalles = false; 
         this.ngOnInit();
-      }else{
-        this.snack.open('No se pudo guardar los cambios', 'Aceptar',{
+      } else {
+        this.snack.open('No se pudo guardar los cambios', 'Aceptar', {
           duration: 3000,
           verticalPosition: 'top',
           horizontalPosition: 'right'

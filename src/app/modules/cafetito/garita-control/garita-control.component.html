@@ -1,4 +1,4 @@
-<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+<div  *ngIf="tablaHabilitada" class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
     <mat-card-title class="main-title" >
         GARITA DE CONTROL</mat-card-title>
         <div class="row mt-2" >
@@ -30,6 +30,12 @@
                                 </th>
                                 <td mat-cell *matCellDef="let item"> {{item.nombreEstado}} </td>
                               </ng-container>
+                              <ng-container matColumnDef="placa">
+                                <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                                 Placa Vehículo
+                                </th>
+                                <td mat-cell *matCellDef="let item"> {{item.placa}} </td>
+                              </ng-container>
                                <ng-container matColumnDef="acciones">
                                 <th mat-header-cell *matHeaderCellDef class="header-table"></th>
                                 <td mat-cell *matCellDef="let item">
@@ -38,10 +44,10 @@
                                       <mat-icon>more_horiz</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
-                                      <button mat-menu-item title="Enviar Parcialidad" (click)="aprobarIngreso(item)" >
+                                      <button mat-menu-item title="Validar Vehiculo" (click)="validarVehiculo(item)" >
                                         <mat-icon class="iconos">local_shipping</mat-icon>
-                                        <span>Aprobar Ingreso</span>
-                                      </button>               
+                                        <span>Validar Vehículo</span>
+                                      </button>            
                                     </mat-menu>
                                   </div>
                                 </td>
@@ -54,3 +60,46 @@
             </div>
         </div>
 </div>
+
+<!--detalle de la parcialidad-->
+<mat-card  *ngIf="parcialidad && vehiculo && habilitarDetalles">
+  <mat-card-title class="main-title" >
+    <button mat-icon-button (click)="regresar()" *ngIf="true">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+      Detalle de la Parcialidad</mat-card-title>
+  <mat-grid-list cols="2" rowHeight="2:1">
+    
+    
+    <mat-grid-tile>
+      
+      <div>
+        <h1> Datos de La Parcialidad</h1>
+        
+        <p><label>ID Parcialidad:</label>{{parcialidad.idParcialidad}}</p>
+        <p><label>Peso:</label>{{parcialidad.peso}}</p>
+        <p><label>Estado:</label>{{parcialidad.nombreEstado}}</p>
+        <p><label>No. Cuenta:</label>{{parcialidad.numeroCuenta}}</p>
+      </div>
+
+
+      
+    </mat-grid-tile>
+    <mat-grid-tile>
+      
+      <div>
+        <h1>Datos del Vehículo</h1>
+        <p><label>Placa:</label>{{vehiculo.placaVehiculo}}</p>
+        <p><label>Marca:</label>{{vehiculo.marcaVehiculo}}</p>
+        <p><label>Modelo:</label>{{vehiculo.modeloVehiculo}}</p>
+        <p><label>Color:</label>{{vehiculo.colorVehiculo}}</p>
+        <p><label>Peso:</label>{{vehiculo.pesoVehiculo}}</p>
+        <p><label>Estado:</label>{{vehiculo.estadoVehiculo === 19 ? 'Vehículo Asignado/En Ruta': 'otro'}}</p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="container text-center">
+    <button mat-raised-button color="primary" (click)="aprobarIngreso()">Autorizar Ingreso</button>
+  </div>
+  
+</mat-card>
