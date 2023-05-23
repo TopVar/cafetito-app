@@ -1,0 +1,89 @@
+
+
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+    <mat-card-title class="main-title" >Reporte-Agricultores</mat-card-title>
+    <div class="row mt-2" > 
+      <div class="col-sm py-3 ps-2 pe-3">
+        <mat-card class="parent">
+            <div>
+                <mat-form-field appearance="standard" class="col-12 col-sm-12 col-md-5 col-lg-4 me-0 me-sm-0 me-md-3 me-lg-4">
+                    <mat-label>Filtro</mat-label>
+                    <input matInput (keyup)="applyFilter($event)">
+                  </mat-form-field>
+                  <div class="result-count">
+                    <span class="title">Resultados de búsqueda </span>
+                    <span class="count">{{reportes.data.length}}</span>
+                  </div>
+                  <div class="table-responsive">
+                    <table mat-table [dataSource]="reportes" matSort>
+                        <ng-container matColumnDef="Agricultor">
+                            <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                              Agricultores
+                            </th>
+                            <td mat-cell *matCellDef="let item"> {{item.nombreAgricultor}} </td>
+                          </ng-container>
+                        <ng-container matColumnDef="Usuario">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                          Usuario
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.usuarioAgricultor}} </td>
+                      </ng-container>
+                      
+                      <ng-container matColumnDef="Telefono">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                          Telefono
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.telefonoAgricultor}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Email">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                            Email
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.emailAgricultor}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Peso Total">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                            Peso Total
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.pesoTotal}} KG</td>
+                      </ng-container>
+                      <ng-container matColumnDef="cantidadCuentas">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                            Cuentas Confirmadas
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.cantidadCuentas}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Cantidad Faltantes">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                            Cantidad Faltantes
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.toleranciaMenor}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Cantidad Sobrantes">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                            Cantidad Sobrantes
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.toleranciaMayor}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="Cantidad Entregas Completas">
+                        <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
+                            Cantidad Entregas Completas
+                        </th>
+                        <td mat-cell *matCellDef="let item"> {{item.toleranciaCoincide}} </td>
+                      </ng-container>
+                      
+          
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <div>
+                        <mat-paginator #MatPaginator2="matPaginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                          aria-label="Select page of periodic elements">
+                        </mat-paginator>
+                    </div>
+                  </div>
+            </div>          
+        </mat-card>
+      </div>    
+    </div>
+  </div>

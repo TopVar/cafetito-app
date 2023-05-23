@@ -23,6 +23,10 @@
             <mat-icon mat-list-icon>airline_seat_recline_normal</mat-icon>
             Autorizar Trasportistas
         </button>
+        <button mat-list-item [routerLink]="['/cafetito/reportes']" *ngIf="roles.includes('CAFETITO_ADMIN')">
+            <mat-icon mat-list-icon>assessment</mat-icon>
+            Reportes
+        </button>
         <button mat-list-item [routerLink]="['/pesocabal/pesaje/parcialidad']" *ngIf="roles.includes('CAFETITO_PESO_CABAL')">
             <mat-icon mat-list-icon>scale </mat-icon>
             Pesar Parcialidad

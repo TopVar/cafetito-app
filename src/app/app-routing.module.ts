@@ -13,6 +13,7 @@ import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/ge
 import { BrowserModule } from '@angular/platform-browser';
 import { VerificarTransportistaComponent } from './modules/cafetito/garita-control/verificar-transportista/verificar-transportista.component';
 import { NormalGuard } from './modules/componentes-comunes/servicios/normal.guard';
+import { ReportesComponent } from './modules/cafetito/reportes/reportes.component';
 
 const routes: Routes = [
   { 
@@ -60,6 +61,10 @@ const routes: Routes = [
         path: 'gestionar/cuentas',
         component: GestionarCuentaComponent
       },
+      {
+        path: 'reportes',
+        component: ReportesComponent
+      }
       /* {
         path: 'pesaje/vehiculo',
         component: PesajeVehiculoComponent

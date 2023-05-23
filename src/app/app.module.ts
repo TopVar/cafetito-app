@@ -40,6 +40,7 @@ import { GestionarCuentaComponent } from './modules/cafetito/gestionar-cuenta/ge
 import { VerificarTransportistaComponent } from './modules/cafetito/garita-control/verificar-transportista/verificar-transportista.component';
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ReportesComponent } from './modules/cafetito/reportes/reportes.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     PesajeParcialidadComponent,
     PesajeVehiculoComponent,
     GestionarCuentaComponent,
-    VerificarTransportistaComponent
+    VerificarTransportistaComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,
