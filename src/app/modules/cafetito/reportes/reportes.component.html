@@ -1,7 +1,45 @@
 
+<mat-card class="middle">
+  <h1 class="text-center">Reporte Agricultores</h1><br>
+  <form class="was-validated" [formGroup]="formfiltro" >
+      <p *ngIf="!formfiltro.valid" style="color:red"><strong>* Campos Obligatorios</strong></p>
+      <mat-panel-title>Rango de Fechas:</mat-panel-title>  
+      <div class="row">
+          <mat-form-field appearance="legacy" class="col-sm">
+              <mat-label>Desde:</mat-label>
+              <input matInput [max]="maxDate" [matDatepicker]="picker" placeholder="dd/mm/yyyy" formControlName="desde" (click)="picker.open()" required readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>  
+          </mat-form-field>
+          <mat-form-field appearance="legacy" class="col-sm">
+              <mat-label>Hasta:</mat-label>
+              <input matInput [max]="maxDate" [matDatepicker]="picker2" placeholder="dd/mm/yyyy" formControlName="hasta" (click)="picker2.open()" required readonly>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field> 
+      </div>
+    
+      <div class="text-center">
+          <button class="btn btn-primary" type="submit" (click)="generarReporte()" [disabled]="!formValid()">
+              <i class="fa fa-search fa-5x" aria-hidden="true"></i>
+              Buscar
+          </button>
+          <button class="btn full" type="button" (click)="limpiar()">
+              <i class="fa fa-eraser" aria-hidden="true"></i>
+              Limpiar Filtro
+          </button>
+      </div>
+      <div *ngIf="!formfiltro.valid">
+          <p style="color: gray;text-align: right;">Por favor ingrese campos obligatorios.</p>
+        </div>
+  </form>
+</mat-card>
 
-<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
-    <mat-card-title class="main-title" >Reporte-Agricultores</mat-card-title>
+
+
+<div *ngIf="reportes.data.length > 0" class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+    <mat-card-title class="main-title" >Resultados de Consulta</mat-card-title>
+    
     <div class="row mt-2" > 
       <div class="col-sm py-3 ps-2 pe-3">
         <mat-card class="parent">
@@ -10,6 +48,10 @@
                     <mat-label>Filtro</mat-label>
                     <input matInput (keyup)="applyFilter($event)">
                   </mat-form-field>
+                  <button class="btn btn-success" (click)="generarExcel()">
+                    Exportar Excel
+                    <i class="fa fa-file-excel-o"></i>
+                </button>
                   <div class="result-count">
                     <span class="title">Resultados de búsqueda </span>
                     <span class="count">{{reportes.data.length}}</span>
@@ -43,7 +85,7 @@
                       </ng-container>
                       <ng-container matColumnDef="Peso Total">
                         <th mat-header-cell *matHeaderCellDef class="header-table" mat-sort-header>
-                            Peso Total
+                            Peso Total Entregados
                         </th>
                         <td mat-cell *matCellDef="let item"> {{item.pesoTotal}} KG</td>
                       </ng-container>

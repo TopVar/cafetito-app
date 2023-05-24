@@ -4,6 +4,9 @@ import { ReporteInterface } from '../../componentes-comunes/interfaces/reporte.i
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
+import { ExcelReportesService } from '../../componentes-comunes/servicios/excel-reportes.service';
 
 @Component({
   selector: 'app-reportes',
@@ -18,6 +21,9 @@ export class ReportesComponent implements OnInit {
     this.reportes.paginator = mp2;
   }
 
+  fecha1: any;
+  fecha2: any;
+
   displayedColumns: string[] = [
     'Agricultor',
     'Usuario', 
@@ -31,14 +37,32 @@ export class ReportesComponent implements OnInit {
   reportes = new MatTableDataSource<ReporteInterface>();
 
 
-  constructor(private reporteService: ReportesService) { }
+  constructor(private reporteService: ReportesService,
+    private excelService: ExcelReportesService) { }
 
   ngOnInit(): void {
-    this.generarReporte('2023-05-01','2023-05-31');
+    //this.generarReporte('2023-05-01','2023-05-31');
   }
 
-  generarReporte(fechaInicio: string, fechaFin: string): void {
-    this.reporteService.generarReporte(fechaInicio, fechaFin)
+  // obtiene año,mes,dia actual para restringir consulta maxima de 1 año en los calendarios.
+  anioActual = new Date().getFullYear();
+  mes = new Date().getMonth();
+  dia = new Date().getDate();
+  minDate = new Date(this.anioActual - 1, this.mes, this.dia);
+  maxDate = new Date(this.anioActual, this.mes, this.dia);
+
+  formfiltro = new FormGroup({
+    desde: new FormControl(null, Validators.required),
+    hasta: new FormControl(null, Validators.required),
+  });
+
+
+  generarReporte(): void {
+
+    this.fecha1 = moment(this.formfiltro.controls.desde.value).format('YYYY-MM-DD');
+    this.fecha2 = moment(this.formfiltro.controls.hasta.value).format('YYYY-MM-DD');
+
+    this.reporteService.generarReporte(this.fecha1, this.fecha2)
       .subscribe( res => {
         if(res.length != 0){
           this.reportes.data = res;
@@ -54,4 +78,16 @@ export class ReportesComponent implements OnInit {
     this.reportes.filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
   }
 
+  formValid(): boolean {
+    return this.formfiltro.valid;
+  }
+
+  limpiar() {
+    this.formfiltro.reset(); // Reiniciar los valores del formulario a null
+    this.reportes.data = [];
+  }
+
+  generarExcel(){
+    this.excelService.generateExcel(this.fecha1, this.fecha2, this.reportes.data);
+  }
 }

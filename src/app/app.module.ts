@@ -22,6 +22,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; 
 
 import { ErrorInterceptor } from './modules/componentes-comunes/utils/error.interceptor';
 import { AutorizarTransportistasComponent } from './modules/cafetito/autorizar-transportistas/autorizar-transportistas.component';
@@ -84,6 +86,8 @@ import { ReportesComponent } from './modules/cafetito/reportes/reportes.componen
    MatOptionModule,
    MatRadioModule,
    MatGridListModule,
+   MatDatepickerModule,
+   MatNativeDateModule,
    NgxSpinnerModule
   ],
   providers: [
