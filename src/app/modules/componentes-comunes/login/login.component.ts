@@ -59,6 +59,11 @@ export class LoginComponent implements OnInit {
       }
     },
     error => {
+      this.snack.open('Acceso Denegado', 'Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
       console.log(error);
     });    
   }

@@ -34,7 +34,8 @@ export class PesajeParcialidadComponent implements OnInit {
     private boletaService: BoletaService) { 
 
     this.generalFormGroup = new FormGroup({
-      peso: new FormControl('', Validators.required)
+      peso: new FormControl('', Validators.required),
+      medida: new FormControl({value: "", disabled: true}),
     })
 
     this.boletaFormGroup = new FormGroup({
@@ -58,12 +59,23 @@ export class PesajeParcialidadComponent implements OnInit {
     this.formulario = false;
     this.parcialidadService.getParcialidadesPesaje().subscribe(res =>{
       if(res.length != 0){
+        console.log(res);
+        
         this.dataSource.data = res
       }else{
         Swal.fire("Cuentas no encontradas",  `Lo sentimos, pero no se encontraron parcialidades para pesar.`,'warning').then(()=>{
           this.dataSource.data = []
         })
       }
+    },
+    error => {
+      console.log(error);
+      
+      this.snack.open('Lo sentimos, ocurrio un error en el sistema', 'Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
     })
   }
 
@@ -77,7 +89,8 @@ export class PesajeParcialidadComponent implements OnInit {
 
   pesar(item: ParcialidadInterface){    
     this.inicio= false;
-    this.idParcialidad = item.idParcialidad;  
+    this.idParcialidad = item.idParcialidad; 
+    this.generalFormGroup.patchValue({medida: item.tipoMedida})
 
   }
 
@@ -120,6 +133,15 @@ export class PesajeParcialidadComponent implements OnInit {
         });
       }
       
+    },
+    error =>{
+      console.log(error);
+      
+      this.snack.open('No se pudo agregar al transportista', 'Aceptar',{
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
     })
 
   }
@@ -202,5 +224,6 @@ export class PesajeParcialidadComponent implements OnInit {
       document.close();
       printWindow.print();
     }
+    this.ngOnInit();
   }
 }

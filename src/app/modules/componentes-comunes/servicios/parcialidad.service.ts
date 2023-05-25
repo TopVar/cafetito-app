@@ -57,4 +57,10 @@ export class ParcialidadService {
 
       return this.http.get<ParcialidadInterface[]>(environment.BASE_WS_LOCAL + `/cafetito/parcialidades/gestionar/${noCuenta}`, { headers });
     }
+
+    rechazarParcialidadGarita(idParcialidad: number): Observable<RespuestaInterface> {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+
+      return this.http.put<RespuestaInterface>(environment.BASE_WS_LOCAL + `/cafetito/parcialidades/garita/rechazo/${idParcialidad}`, null, { headers });
+    }
 }

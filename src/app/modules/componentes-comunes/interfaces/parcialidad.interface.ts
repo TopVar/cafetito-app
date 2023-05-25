@@ -10,6 +10,7 @@ export interface ParcialidadInterface {
   licencias?: string;
   estado: number;
   nombreEstado: string;
+  tipoMedida: string;
 }
 
 export interface EnvioParcialidadInterface {

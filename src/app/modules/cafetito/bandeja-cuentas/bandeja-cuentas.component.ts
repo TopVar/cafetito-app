@@ -40,6 +40,7 @@ export class BandejaCuentasComponent implements OnInit {
       peso: new FormControl({value: "", disabled: true}),
       parcialidades: new FormControl({value: "", disabled: true}),
       agricultor: new FormControl({value: "", disabled: true}),
+      tipoMedida: new FormControl({value: "", disabled: true}),
     })
 
     this.comentarioFormGroup = new FormGroup({
@@ -77,7 +78,8 @@ export class BandejaCuentasComponent implements OnInit {
       idVenta: item.idCuentaCorriente,
       peso: item.peso,
       parcialidades: item.cantidad,
-      agricultor: item.agricultor
+      agricultor: item.agricultor,
+      tipoMedida: item.tipoMedida
     })
 
     const dataVehiculo: VehiculosAsignados [] = item.vehiculos

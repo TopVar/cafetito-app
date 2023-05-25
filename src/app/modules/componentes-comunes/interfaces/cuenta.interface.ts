@@ -29,6 +29,7 @@ import { VehiculoInterface } from "./vehiculo.interface";
         estado?: number;
         estadoNombre?: string;
         idCuentaCorriente?: number;
+        tipoMedida: string;
         vehiculos: VehiculosAsignados[];
     }
 

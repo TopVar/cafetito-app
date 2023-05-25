@@ -7,10 +7,6 @@
             <mat-icon mat-list-icon>home</mat-icon>
             Inicio
         </button>
-        <button mat-list-item >
-            <mat-icon mat-list-icon>account_circle</mat-icon>
-            Perfil
-        </button>
         <button mat-list-item [routerLink]="['/cafetito/cuentas']" *ngIf="roles.includes('CAFETITO_CREAR_CUENTA')">
             <mat-icon mat-list-icon>check_circle</mat-icon>
             Aprobar Cuentas
@@ -42,6 +38,10 @@
         <button mat-list-item [routerLink]="['/cafetito/ingreso']" *ngIf="roles.includes('CAFETITO_AUTORIZAR_INGRESO')">
             <mat-icon mat-list-icon>trending_flat</mat-icon>
             Validar Ingreso
+        </button>
+        <button mmat-list-item  (click)="logout()">
+            <mat-icon mat-list-icon>logout</mat-icon>
+            Cerrar Sesión
         </button>
     </mat-action-list>
 </mat-card>

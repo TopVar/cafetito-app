@@ -76,10 +76,14 @@
               <div *ngIf="!formulario">
                 <div >
                   <form [formGroup]="generalFormGroup">
-                      <mat-form-field class="full-width" appearance="outline">
+                      <mat-form-field class="full-width col-sm-8" appearance="outline">
                           <mat-label>Peso de la Parcialidad</mat-label>
                           <input matInput placeholder="Ingrese su usuario" formControlName="peso" type="number">
                       </mat-form-field>
+                      <mat-form-field class="col-sm-4">
+                        <mat-label>Unidad de Medida</mat-label>
+                        <input matInput placeholder="Unidad medida" formControlName="medida">
+                    </mat-form-field>
                   </form>
                 </div>
                 <div class="container text-center">

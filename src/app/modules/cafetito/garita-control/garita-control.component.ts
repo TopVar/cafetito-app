@@ -56,10 +56,12 @@ export class GaritaControlComponent implements OnInit {
   aprobarIngreso() {
     this.parcialidadService.autorizarIngreso(this.parcialidad.idParcialidad).subscribe(res => {
       if (res) {
-        Swal.fire("Ingreso exitoso", 'Se ingresa correctamente', 'success');
-        this.tablaHabilitada = true; 
-        this.habilitarDetalles = false; 
-        this.ngOnInit();
+        Swal.fire("Ingreso exitoso", 'Se ingresa correctamente', 'success').then(()=>{
+          this.tablaHabilitada = true; 
+          this.habilitarDetalles = false; 
+          this.ngOnInit();
+        })
+        
       } else {
         this.snack.open('No se pudo guardar los cambios', 'Aceptar', {
           duration: 3000,
@@ -67,6 +69,36 @@ export class GaritaControlComponent implements OnInit {
           horizontalPosition: 'right'
         });
       }
+    },
+    error =>{
+      this.snack.open('No se pudo guardar los cambios', 'Aceptar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+    })
+  }
+
+  rechazarIngreso(){
+    this.parcialidadService.rechazarParcialidadGarita(this.parcialidad.idParcialidad).subscribe(res =>{
+      if(res){
+        Swal.fire(res.titulo, res.contenido, 'success').then(()=>{
+          this.ngOnInit()
+        })
+      }else {
+        this.snack.open('No se pudo rechazar la parcialidad', 'Aceptar', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'right'
+        });
+      }
+    },
+    error =>{
+      this.snack.open('No se pudo rechazar la parcialidad', 'Aceptar', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
     })
   }
 

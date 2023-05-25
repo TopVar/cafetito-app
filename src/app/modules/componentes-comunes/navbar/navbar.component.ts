@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
+import { Router } from '@angular/router';
+import { AutenticationInterface } from '../interfaces/usuario.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -8,14 +10,12 @@ import { LoginService } from '../servicios/login.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public loginService: LoginService) { }
+  btnSesion!: boolean;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  public  logout(){
-    this.loginService.logout();
-    window.location.reload();
-  }
 
 }
